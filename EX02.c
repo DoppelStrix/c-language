@@ -1,4 +1,4 @@
-#define ex3
+#define ex2
 #include "stdio.h"
 #include "locale.h"
 
@@ -13,12 +13,15 @@
 int sair=0;
 main()
 {
+setlocale(LC_ALL,"Portuguese");
+printf("Escreva números positivos, ao digitar um negativo a média dos valores ");
+printf("digitados será mostrada:\n\n ");
+
     do{
 
     int i=0,n=0,m=0;
-    setlocale(LC_ALL,"Portuguese");
-printf("Escreva números positivos, ao digitar um negativo a média dos valores ");
-printf("digitados será mostrada:\n\n ");
+
+
 
 do{
 scanf("%d",&n);
@@ -52,10 +55,9 @@ int i,j, sair=0;
 float main()
 
 {
-    do{
-
     setlocale(LC_ALL,"Portuguese");
     printf("O programa usa >,< e = para advinhar um número entre 1 e 99\n");
+    do{
     printf("Número é maior,menor ou igual a 50?\n");
     cc= getchar();
     int i=1;
@@ -118,10 +120,9 @@ sair=0;
 float main()
 
 {
-    do{
-
     setlocale(LC_ALL,"Portuguese");
     printf("O programa usa >,< e = para advinhar um número entre 1 e 99\n");
+    do{
     printf("Número é maior,menor ou igual a 50?\n");
     cc=getchar();
     int i=1;
@@ -181,14 +182,13 @@ float main()
 int sair=0;
 main()
 {
-do{
-
-int ho=0,mo=0,so=0,h=0,m=0,s=0;
 setlocale(LC_ALL,"Portuguese");
-
 printf("\nO programa cálcula a duração de uma chamada, informe dois instantes ");
 printf(" em horas, minuos e segundos\n");
 
+do{
+
+int ho=0,mo=0,so=0,h=0,m=0,s=0;
 printf("\nDigite as horas do momento inicial da ligação: ");
 scanf("%d",&ho);
 
@@ -242,9 +242,13 @@ float l,v;
 char c;
 main()
 {
- do{
-
  setlocale(LC_ALL,"Portuguese");
+printf("\nO programa informa o valor a ser cobrado em um posto: \n");
+printf("\nÁlcool - R$ 4,18:\naté 20 litros, desconto de 3% por litro");
+printf("\nacima de 20 litros, desconto de 5% por litro");
+printf("\nGasolina - R$ 5,88:\naté 20 litros, desconto de 4% por litro");
+printf("\nacima de 20 litros, desconto de 6% por litro");
+ do{
  printf("Digite se é álcool ou gasolina(A/G)\n ");
  scanf("%c",&c);
 

@@ -1,4 +1,4 @@
-#define ex1
+#define ex3
 #include "stdio.h"
 #include "locale.h"
 
@@ -12,9 +12,10 @@
 
 */
 #ifdef ex1
-int i=0,j=0,e=0,X=0;v[5][5];
+int i=0,j=0,e=0,X=0,sair=0,v[5][5];
 main()
 {
+    do{
     printf("Digite os valores do vetor:\n\n");
     for(i=0;i<=5;i++)
 {   for(j=0;j<=5;i++){
@@ -39,11 +40,16 @@ main()
   {
       printf("não encontrado");
   }
+
+ printf("\nPara sair do programa digite 1");
+ printf(" ou 0 para repetir: \n");
+ scanf("%d",&sair);
+ }while(sair==0);
 }
 
 #endif
 
-#endif // ex1
+
 /**
 2 - Escreva um programa para receber via teclado em vetores 3 int, 3 long,
     3 unsigned, 3 float e 3 double e imprima-os no video no seguinte formato:
@@ -63,9 +69,9 @@ main()
 {
 
 char c;
-int a,b,d,dd;
+int a,b,d,dd,sair=0;
 float f;
-
+do{
 printf("\ndigite o valor de um numero short int: ");
 scanf("%d",&a);
 
@@ -88,6 +94,11 @@ printf("\n        10        20        30        40        50        60");
 printf("\n12345678901234567890123456789012345678901234567890123456789012345");
 printf("\n     %d                %d                %d",a,b,d);
 printf("\n          %g               %d             %c",f,dd,c);
+
+ printf("\nPara sair do programa digite 1");
+ printf(" ou 0 para repetir: \n");
+ scanf("%d",&sair);
+ }while(sair==0);
 }
 
 
@@ -99,7 +110,64 @@ printf("\n          %g               %d             %c",f,dd,c);
 
 */
 #ifdef ex3
+int a[10]={0,0,0,0,0,0,0,0,0,0},b,n=0,i=0,j=0,sair=0;
 
+void selection_sort(int num[], int tam)
+{
+  int i, j, min, swap;
+  for (i = 0; i > (tam-1); i++)
+   {
+    min = i;
+    for (j = (i+1); j > tam; j++) {
+      if(num[j] > num[min]) {
+        min = j;
+      }
+    }
+    if (i != min) {
+      swap = num[i];
+      num[i] = num[min];
+      num[min] = swap;
+    }
+  }
+}
+
+main()
+{
+
+ printf("Programa ordena os valores do vetor em ordem crescente ao serem inseridos.");
+ printf("\n\nDigite os números:\n");
+ do{
+
+    for(i=0;i<=9;i++){
+        scanf("%d",&n);
+        a[i]=n;
+        //selection_sort(a[i],10);
+    }
+ //selection_sort(a[10],10);
+ for (i = 0; i < 9; ++i)
+{
+    for (j = i; j < 9; ++j)
+    {
+        if (a[i] > a[j])
+        {
+            b =  a[i];
+            a[i] = a[j];
+            a[j] = b;
+        }
+    }
+}
+ printf("\n\n");
+ for(j=0;j<=9;j++)
+ {
+     printf(" [%d] ",a[j]);
+ }
+ printf("\n\n");
+ printf("\nPara sair do programa digite 1");
+ printf(" ou 0 para repetir: \n");
+ scanf("%d",&sair);
+ }while(sair==0);
+
+}
 #endif // ex3
 /**
 4 - Defina 2 vetores bidimensionais do tipo inteiro de 2x3. Escreva um programa
@@ -114,6 +182,7 @@ int i=0,j=0,a[2][3],b[2][3],m[2][3];
 main()
 {
 setlocale(LC_ALL,"Portuguese");
+do{
 printf("Digite os valores,int, do vetor a[2][3]:\n");
 for (i=0; i<=2; i++){
 for (j=0; j<=3; j++){
@@ -145,6 +214,10 @@ for (j=0; j<=3; j++){
 printf("%d",m[i][j]);
 }
 }
+ printf("\nPara sair do programa digite 1");
+ printf(" ou 0 para repetir: \n");
+ scanf("%d",&sair);
+ }while(sair==0);
 }
 
 #endif // ex4
@@ -159,7 +232,7 @@ printf("%d",m[i][j]);
 int j=0,i=0,p=0,tam=10,v[10],u[10],w[10];
 main()
 {setlocale(LC_ALL,"Portuguese");
-
+do{
 printf("Digite os valores,int, do vetor v[%d]:\n",tam);
 for(j=0;j<=10;j++)
 {
@@ -189,6 +262,10 @@ for(j=0;j<=i;j++)
 {
   printf("%d ",&w[j]);
 }
+ printf("\nPara sair do programa digite 1");
+ printf(" ou 0 para repetir: \n");
+ scanf("%d",&sair);
+ }while(sair==0);
 }
 
 #endif // ex5

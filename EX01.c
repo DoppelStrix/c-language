@@ -1,4 +1,4 @@
-#define ex1
+#define ex5
 #include "stdio.h"
 #include "locale.h"
 
@@ -83,6 +83,7 @@ scanf("%d",&sair);
          short               long                int
                    float               double              char
 */
+#ifdef ex2
 int sair=0;
 main()
 {
@@ -122,7 +123,7 @@ scanf("%d",&sair);
 }while(sair==0);
 
 }
-
+#endif
 /**
 3 - Escreva um programa que receba via teclado um tempo em segundos e converta
     para horas, minutos e segundos.
@@ -134,13 +135,12 @@ scanf("%d",&sair);
 int sair=0;
 main()
 {
+printf("\n\nO programa receba via teclado um tempo em segundos e converta um ");
+printf(" para horas, minutos e segundos.");
 do{
 
 setlocale(LC_ALL,"Portuguese");
 int t=0, h=0,m=0,s=0;
-
-printf("\n\nO programa receba via teclado um tempo em segundos e converta um ");
-printf(" para horas, minutos e segundos.");
 
 printf("\n\nDigite o valor do tempo em segundos : ");
 scanf("%d",&t);
@@ -192,10 +192,10 @@ main()
 
 setlocale(LC_ALL,"Portuguese");
 int d=0, l=0,i=1,r=1;
-do{
 printf("\n\nO programa determina o menor múltiplo de um número inteiro.\nEste ");
 printf("múltiplo deve ser maior que o limite mínimo recebido.");
 
+do{
 printf("\n\nDigite o valor de um número inteiro : ");
 scanf("%d",&d);
 
@@ -233,23 +233,25 @@ scanf("%d",&sair);
 int sair=0;
 main()
 {
+printf("\n\nO programa determina o menor número possível de notas de $100,");
+printf("$50, $10 e $1 em que o valor lido pode ser decomposto.\n ");
 do{
 
 setlocale(LC_ALL,"Portuguese");
-int nota=0, c=0,d=0,n=0;
+int nota=0, c=0,d=0,l=0,n=0;
 
-printf("\n\nO programa determina o menor número possível de notas de $100,");
-printf("$50, $10 e $1 em que o valor lido pode ser decomposto.\n ");
-printf("Este múltiplo deve ser maior que o limite mínimo recebido.");
-
-printf("\n\nDigite o valor: ");
+printf("\n\nDigite o valor: \n\n\n");
 scanf("%d",&nota);
+
 c=nota/100;
 d=(nota%100)/10;
 n=(nota%100)%10;
-printf("\nNotas de 100: %d; de 10: %d e de 1: %d. \n\n",c,d,n);
-printf("\nPara sair do programa digite 1");
-printf(" ou 0 para repetir: \n");
+if (d>=5)
+    {l++;
+     d-=5;       }
+printf("\nValor: %d;Notas 100: %d; de 50: %d;  de 10: %d e de 1: %d.",nota,c,l,d,n);
+printf("\n\nPara sair do programa digite 1");
+printf(" ou 0 para repetir: \n\n\n");
 scanf("%d",&sair);
 
 }while(sair==0);

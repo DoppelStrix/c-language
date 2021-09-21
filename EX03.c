@@ -1,4 +1,4 @@
-#define ex1
+#define ex5
 
 #include "stdio.h"
 #include "locale.h"
@@ -32,8 +32,9 @@ for(i=0;i<=12;i++)
 
 main()
 {
-    do{
     setlocale(LC_ALL,"Portuguese");
+    printf("Programa procura uma letra dentro de um vetor:\n\n");
+    do{
     printf("Digite o valor a ser procurado\n");
     scanf("%c",&s);
     letra(s);
@@ -99,12 +100,14 @@ int MultN(int x,int y,int a,int b)
 
 main()
 {
- do{
 
  setlocale(LC_ALL,"Portuguese");
- int x,y;
  printf("Programa recebe 2 números inteiros; Se positivos faz a soma, se negativos ");
  printf("a multiplicação:\n");
+
+ do{
+ int x,y;
+
  printf("Primeiro número:\n");
  scanf("%d",&x);
  printf("Segundo número:\n");
@@ -157,12 +160,13 @@ int Div(int a, int b){
 
 main()
 {
- do{
-
  setlocale(LC_ALL,"Portuguese");
- int x,y;
  printf("Programa recebe 2 números inteiros e retorna o resultado das;");
  printf("operações aritiméticas:\n ");
+
+ do{
+ int x,y;
+
  printf("Primeiro número:\n");
  scanf("%d",&x);
  printf("Segundo número:\n");
@@ -225,11 +229,12 @@ int Div(int a, int b){
 
 main()
 {
+ setlocale(LC_ALL,"Portuguese");
+ printf("Programa recebe 2 números inteiros e retorna o resultado das;");
+ printf("operações aritiméticas:\n ");
  do{
-
      int x,y,c;
-     printf("Programa recebe 2 números inteiros e retorna o resultado das;");
-     printf("operações aritiméticas:\n ");
+
      printf("Primeiro número:\n");
      scanf("%d",&x);
      printf("Segundo número:\n");
@@ -271,14 +276,62 @@ main()
     Ex: se N = 4, N! = 24. Logo, a soma de seus algarismos ´e 2 + 4 = 6.
 */
 #ifdef ex5
+
+int fatori(int x);
+int somaAlg(int x);
+
+int fatori(int x){
+   int N=1,i=1;
+   do
+   {N*=i;
+    i++;
+   }while(i<=x);
+   return N;
+
+}
+
+int somaAlg(int x)
+{
+    int N,soma=0;
+    N=x;
+    while (N!=0)
+	{
+		soma+=N%10;
+		N/=10;
+	}
+    return soma;
+
+
+}
+
+
 int sair=0;
 main()
 {
- do{
  setlocale(LC_ALL,"Portuguese");
- double N=0;
+ printf("\nPrograma recebe um número e retorna a");
+ printf("soma dos algarismos de seu fatorial: \n\n");
+ do{
 
+ int N=0,soma=0;
+ printf("Insira um número natural:\n\n");
+ scanf("%d",&N);
 
+if (N>=2)
+{
+    soma = fatori(N);
+    //printf("\n\nteste do resultado fatorial %d\n\n",soma);//teste
+    soma = somaAlg(soma);
+}
+
+else
+
+{
+   soma=1;
+
+}
+
+ printf("\n\nO valor da soma dos algarismo é:%d",soma);
  printf("\nPara sair do programa digite 1");
  printf(" ou 0 para repetir: \n");
  scanf("%d",&sair);

@@ -14,8 +14,9 @@
 main()
 {
     // usando ano comercial 360 dias,mês 30 dias.
-    int A,M,D,a,m,d;
+    int A,M,D,a,m,d,sair=0;
     setlocale(LC_ALL,"Portuguese");
+    do{
     printf("\nDigite a data (dia, mês e ano) do nascimento\n");
     scanf("%d",&d);
     scanf("%d",&m);
@@ -59,7 +60,12 @@ main()
         printf("Data inválida");
 
         }
-        printf("A idade é: %d anos,%d meses e %d dias.",A,M,D);
+    printf("A idade é: %d anos,%d meses e %d dias.",A,M,D);
+
+    printf("\nPara sair do programa digite 1");
+    printf(" ou 0 para repetir: \n");
+    scanf("%d",&sair);
+   }while(sair==0);
 }
 
 #endif // ex1
@@ -70,8 +76,9 @@ main()
 #ifdef ex2
 main()
 {
-    int a,b;
+    int a,b,sair=0;
     setlocale(LC_ALL,"Portuguese");
+    do{
     printf("Digite o valor de dois inteiros, a e b\n");
     scanf("%d",&a);
     printf("\n");
@@ -80,6 +87,12 @@ main()
     printf("\nOs valores de a-b e b-a são: %d e %d",a-b,b-a);
     printf("\nO valor de a*b é: %d",a*b);
     printf("\nOs valores de a/b e b/a são: %d e %d\n\n ",a/b,b/a);
+
+    printf("\nPara sair do programa digite 1");
+    printf(" ou 0 para repetir: \n");
+    scanf("%d",&sair);
+
+    }while(sair==0);
 }
 
 #endif // ex2
@@ -90,8 +103,9 @@ main()
 #ifdef ex3
 
 main()
-{int a,b,x,y;
+{int a,b,x,y,sair=0;
     setlocale(LC_ALL,"Portuguese");
+    do{
     printf("Digite o valor de dois inteiros, a e b\n");
     scanf("%d",&a);
     scanf("%d",&b);
@@ -107,6 +121,12 @@ main()
     printf("\nO valor de a*b é: %d",a*=b);
     a=x;
     printf("\nOs valores de a/b e b/a são: %d e %d\n\n ",a/=b,b/=a);
+
+    printf("\nPara sair do programa digite 1");
+    printf(" ou 0 para repetir: \n");
+    scanf("%d",&sair);
+
+    }while(sair==0);
 }
 
 #endif // ex3
@@ -117,8 +137,9 @@ main()
 */
 #ifdef ex4
 main()
-{int a,b,c;
+{int a,b,c,sair=0;
     setlocale(LC_ALL,"Portuguese");
+    do{
     printf("Digite o valor de dois inteiros, a e b\n");
     scanf("%d",&a);
     scanf("%d",&b);
@@ -132,6 +153,11 @@ main()
     printf("\nO valor de a AND b é: %x",a&b);
     printf("\nOs valores de a OU b é: %x",b|a);
     printf("\nO valor de a OU EXCLUSIVO b é: %x",a^b);
+
+    printf("\nPara sair do programa digite 1");
+    printf(" ou 0 para repetir: \n");
+    scanf("%d",&sair);
+    }while(sair==0);
 
 }
 
