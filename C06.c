@@ -125,34 +125,34 @@ void pesquisarNome(){
 
     if (status == 0) {
         int i=0, j=0, cont=0;
-        char procura_produto[30];
+        char procura_empresa[30];
         printf("\n Digite o nome que deseja pesquisar:");
 
         getchar();
-        gets(search_produto);
+        gets(search_empresa);
 
         for (i = 0; i < 3; i++){
 
             for (j = 0; procura_produto[j] != '\0'; j++){
-                if(procura_produto[j] != produto[i][j]){
+                if(procura_empresaj] != empresa[i][j]){
                     break;
                 }
             }
 
-            if(procura_produto[j] == '\0' && produto[i][j] == '\0' && produto[i][0] != '*'){
-                printf("\nNome: %s\nQuantidade: %d\n", produto[i], quantidade[i]);
+            if(procura_empresa[j] == '\0' && empresa[i][j] == '\0' && empresa[i][0] != '*'){
+                printf("\nNome: %s\nQuantidade: %d\n", empresa[i], quantidade[i]);
                 cont++;
                 return i;
             }
 
         }
         if(cont == 0){
-            printf("\nNenhum produto com o nome digitado foi encontrado!\n");
+            printf("\nNenhum  nome digitado foi encontrado!\n");
             return -1;
         }
     }
     else {
-        printf("\nProdutos não foram cadastrados. Entre com os dados antes de consultar.\n");
+        printf("\nNão foram cadastrados. Entre com os dados antes de consultar.\n");
     }
 
     fclose(arquivo);
@@ -172,25 +172,25 @@ void pesquisarLetra(){
 
 
         do{
-            printf("Digite a primeira letra do produto que deseja pesquisar: ");
+            printf("Digite a primeira letra que deseja pesquisar: ");
             getchar();
             search_letra = getchar();
             if (search_letra == '*')
-                printf("\nNome do produto não pode começar com o caracter '*' - reservado pelo sistema!\n\n");
+                printf("\nNome  não pode começar com o caracter '*' - reservado pelo sistema!\n\n");
         }while(search_letra == '*');
 
         for (i = 0; i < 3; i++) {
-            if(search_letra == produto[i][0] && produto[i][0] != '*') {
-                printf("\nNome: %s\nQuantidade: %d\n", produto[i], quantidade[i]);
+            if(search_letra == empresa[i][0] && empresa[i][0] != '*') {
+                printf("\nNome: %s\nQuantidade: %d\n", empresa[i], quantidade[i]);
                 cont++;
             }
         }
         if(cont == 0) {
-            printf("\nNenhum produto com a letra digitada foi encontrado!\n\n");
+            printf("\nNenhuma letra digitada foi encontrado!\n\n");
         }
     }
     else {
-        printf("\nProdutos não foram cadastrados. Entre com os dados antes de consultar.\n");
+        printf("\nNão foram cadastrados. Entre com os dados antes de consultar.\n");
     }
 
     fclose(arquivo);
@@ -207,25 +207,25 @@ void alterarDados(){
 
         arquivo = fopen("c06","r+");
 
-        getposicao = sizeof(produto[0]) * getid;
+        getposicao = sizeof(empresa[0]) * getid;
         fseek(arquivo, getposicao, 0);
-        fread(&produto, sizeof(produto),1,arquivo);
+        fread(&empresa, sizeof(empresa),1,arquivo);
 
-        getposicao = sizeof(produto[0])*3 + sizeof(quantidade[0])* getid;
+        getposicao = sizeof(empresa[0])*3 + sizeof(quantidade[0])* getid;
         fseek(arquivo, getposicao, 0);
         fread(&quantidade, sizeof(quantidade),1,arquivo);
 
-        printf("\nDigite novo produto: ");
-        scanf("%s",&produto);
+        printf("\nDigite novo dado: ");
+        scanf("%s",&empresa);
 
         printf("Digite nova quantidade: ");
         scanf("%d",&quantidade);
 
-        getposicao = sizeof(produto[0]) * getid;
+        getposicao = sizeof(empresa[0]) * getid;
         fseek(arquivo, getposicao, 0);
-        fwrite(produto, sizeof(produto),1,arquivo);
+        fwrite(empresa, sizeof(empresa),1,arquivo);
 
-        getposicao = sizeof(produto[0])*3 + sizeof(quantidade[0])* getid;
+        getposicao = sizeof(empresa[0])*3 + sizeof(quantidade[0])* getid;
         fseek(arquivo, getposicao, 0);
         fwrite(quantidade, sizeof(quantidade),1,arquivo);
 
@@ -251,19 +251,19 @@ void excluirDados(){
 
         arquivo = fopen("c06","r+");
 
-        getposicao = sizeof(produto[0]) * getid;
+        getposicao = sizeof(empresa[0]) * getid;
         fseek(arquivo, getposicao, 0);
-        fread(&produto, sizeof(produto),1,arquivo);
+        fread(&empresa, sizeof(empresa),1,arquivo);
 
-        getposicao = sizeof(produto[0])*3 + sizeof(quantidade[0])* getid;
+        getposicao = sizeof(empresa[0])*3 + sizeof(quantidade[0])* getid;
         fseek(arquivo, getposicao, 0);
         fread(&quantidade, sizeof(quantidade),1,arquivo);
 
-        produto[0][0] = '*';
+        empresa[0][0] = '*';
 
-        getposicao = sizeof(produto[0]) * getid;
+        getposicao = sizeof(empresa[0]) * getid;
         fseek(arquivo, getposicao, 0);
-        fwrite(produto, sizeof(produto),1,arquivo);
+        fwrite(empresa, sizeof(empresa),1,arquivo);
 
         fclose(arquivo);
 
