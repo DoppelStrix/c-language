@@ -64,31 +64,31 @@ void main()
   switch(menu)
   { case 1:
          inserirDados();
-      break;
+         break;
 
     case 2:
          listarDados();
-      break;
+         break;
 
     case 3:
          pesquisarNome();
-      break;
+         break;
 
     case 4:
          pesquisarLetra();
-      break;
+         break;
 
     case 5:
          alterarDados();
-      break;
+         break;
 
     case 6:
          excluirDados();
-      break;
+         break;
 
     case 7:
 
-      break;
+         break;
 
   }
 
@@ -205,7 +205,7 @@ void alterarDados(){
     if(getid != -1) {
         printf("\nO registro %d será alterado...\n",getid+1);
 
-        arquivo = fopen("c05","r+");
+        arquivo = fopen("c06","r+");
 
         getposicao = sizeof(produto[0]) * getid;
         fseek(arquivo, getposicao, 0);
@@ -249,7 +249,7 @@ void excluirDados(){
     if(getid != -1) {
         printf("\nO registro %d será excluído...\n",getid+1);
 
-        arquivo = fopen("c05","r+");
+        arquivo = fopen("c06","r+");
 
         getposicao = sizeof(produto[0]) * getid;
         fseek(arquivo, getposicao, 0);
