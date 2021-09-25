@@ -32,13 +32,13 @@ OBS: Os 2 vetores devem ser escritos e lidos de um arquivo.
 char empresa[3][30], telefone[3][12];
 
 void escreverArq();
-void lerArq();
+int lerArq();
 
 FILE *arquivo;
 
 void inserirDados();
 void listarDados();
-void pesquisarNome();
+int pesquisarNome();
 void pesquisarLetra();
 void alterarDados();
 void excluirDados();
@@ -95,7 +95,31 @@ void main()
   }while(menu!=7);
 }
 
+void escreverArq(){
+    arquivo = fopen("c06","w");
+
+    fwrite();
+    fwrite();
+
+    fclose(arquivo);
+}
+
+int lerArq(){
+    arquivo = fopen("c06","r");
+
+    if(arquivo == NULL){
+        printf("\nErro.");
+        return(1);
+    }
+
+    fread();
+    fread();
+
+    return(0);
+}
+
 void inserirDados(){
+    int i=0;
     for (i=0;i<3;i++)
     {getchar();
      printf("\nInsira o nome da empresa n %d", i+1);
@@ -109,6 +133,7 @@ void inserirDados(){
 }
 
 void listarDados(){
+    int i=0;
     for(i=0;i<3;i++){
         printf("\nO nome da empresa n %d ", i+1);
         puts(empresa[i]);
@@ -120,7 +145,7 @@ void listarDados(){
 
 }
 
-void pesquisarNome(){
+int pesquisarNome(){
     int status = lerArq();
 
     if (status == 0) {
@@ -129,18 +154,18 @@ void pesquisarNome(){
         printf("\n Digite o nome que deseja pesquisar:");
 
         getchar();
-        gets(search_empresa);
+        gets(procura_empresa);
 
         for (i = 0; i < 3; i++){
 
-            for (j = 0; procura_produto[j] != '\0'; j++){
-                if(procura_empresaj] != empresa[i][j]){
+            for (j = 0; procura_empresa[j] != '\0'; j++){
+                if(procura_empresa[j] != empresa[i][j]){
                     break;
                 }
             }
 
             if(procura_empresa[j] == '\0' && empresa[i][j] == '\0' && empresa[i][0] != '*'){
-                printf("\nNome: %s\nQuantidade: %d\n", empresa[i], quantidade[i]);
+                printf("\nNome: %s\nTelefone: %d\n", empresa[i], telefone[i]);
                 cont++;
                 return i;
             }
@@ -160,8 +185,6 @@ void pesquisarNome(){
     }
 
 
-}
-
 void pesquisarLetra(){
     int status = lerArq();
 
@@ -176,12 +199,12 @@ void pesquisarLetra(){
             getchar();
             search_letra = getchar();
             if (search_letra == '*')
-                printf("\nNome  não pode começar com o caracter '*' - reservado pelo sistema!\n\n");
+                printf("\nNome  não pode começar com o caracter '*'\n\n");
         }while(search_letra == '*');
 
         for (i = 0; i < 3; i++) {
             if(search_letra == empresa[i][0] && empresa[i][0] != '*') {
-                printf("\nNome: %s\nQuantidade: %d\n", empresa[i], quantidade[i]);
+                printf("\nNome: %s\nTele: %d\n", empresa[i], telefone[i]);
                 cont++;
             }
         }
@@ -211,9 +234,9 @@ void alterarDados(){
         fseek(arquivo, getposicao, 0);
         fread(&empresa, sizeof(empresa),1,arquivo);
 
-        getposicao = sizeof(empresa[0])*3 + sizeof(quantidade[0])* getid;
+        getposicao = sizeof(empresa[0])*3 + sizeof(telefone[0])* getid;
         fseek(arquivo, getposicao, 0);
-        fread(&quantidade, sizeof(quantidade),1,arquivo);
+        fread(&telefone, sizeof(telefone),1,arquivo);
 
         printf("\nDigite novo dado: ");
         scanf("%s",&empresa);
@@ -255,9 +278,9 @@ void excluirDados(){
         fseek(arquivo, getposicao, 0);
         fread(&empresa, sizeof(empresa),1,arquivo);
 
-        getposicao = sizeof(empresa[0])*3 + sizeof(quantidade[0])* getid;
+        getposicao = sizeof(empresa[0])*3 + sizeof(telefone[0])* getid;
         fseek(arquivo, getposicao, 0);
-        fread(&quantidade, sizeof(quantidade),1,arquivo);
+        fread(&telefone, sizeof(telefone),1,arquivo);
 
         empresa[0][0] = '*';
 
