@@ -98,8 +98,8 @@ void main()
 void escreverArq(){
     arquivo = fopen("c06","w");
 
-    fwrite();
-    fwrite();
+    fwrite(&empresa, sizeof(empresa), 1, arquivo);
+    fwrite(&telefone, sizeof(telefone), 1, arquivo);
 
     fclose(arquivo);
 }
@@ -112,8 +112,8 @@ int lerArq(){
         return(1);
     }
 
-    fread();
-    fread();
+    fread(&empresa, sizeof(empresa), 1, arquivo);
+    fread(&telefone, sizeof(telefone), 1, arquivo);
 
     return(0);
 }
@@ -241,16 +241,16 @@ void alterarDados(){
         printf("\nDigite novo dado: ");
         scanf("%s",&empresa);
 
-        printf("Digite nova quantidade: ");
-        scanf("%d",&quantidade);
+        printf("Digite novo telefone: ");
+        scanf("%d",&telefone);
 
         getposicao = sizeof(empresa[0]) * getid;
         fseek(arquivo, getposicao, 0);
         fwrite(empresa, sizeof(empresa),1,arquivo);
 
-        getposicao = sizeof(empresa[0])*3 + sizeof(quantidade[0])* getid;
+        getposicao = sizeof(empresa[0])*3 + sizeof(telefone[0])* getid;
         fseek(arquivo, getposicao, 0);
-        fwrite(quantidade, sizeof(quantidade),1,arquivo);
+        fwrite(telefone, sizeof(telefone),1,arquivo);
 
         fclose(arquivo);
 
