@@ -1,25 +1,30 @@
 # c-language
 
-PROGRAMA DESAFIO 1
+PROGRAMA DESAFIO 2
 
-1 – Pesquise as funções de biblioteca abaixo que manipulam arquivos.
- 	fopen();
-  	fclose();
-	fwrite();  cuidado com esta função
-	fread();  cuidado com esta função
-fseek(); 
-exit(0); 
+1 - Escreva um programa que tem a estrutura de dados abaixo. O programa tem as seguintes opções de menu:
 
-2 - Escreva  um  programa  que  tem 1 vetores bidimensional empresa[3][30] e 1 vetores telefone[3][12] declaradas como variáveis globais. 
+   1 – Entra dados.
+   2 – Lista todos os dados na tela.
+   3 – Pesquisar um registro pelo nome completo.
+   4 – Pesquisar pela cidade completa
+   5 – Pesquisar pelo celular.
+   6 – Pesquisar por faixa salarial
+   7 – Altera valor do salário, pesquisado pelo nome completo
+   8 – Altera dados, pesquisado pelo nome completo.
+   9 – Exclui dados, pesquisado pelo nome completo.
+   10 – Saída pelo usuário
 
-Na função main()  faça um menu com as seguintes funções: 
+Estrutura: nome, cidade, celular, salário. 
 
-   1 – entrada de dados.
-   2 – lista todos os dados na tela.
-   3 – pesquisa uma empresa com o nome completo e mostra na tela
-   4 – pesquisa as empresas pela 1. letra e mostra todos na tela.
-   5 – altera dados. Com pesquisa pela empresa com o nome completo.
-   6 – exclui dados. Com pesquisa pela empresa com o nome completo.
-   7 - saída
+A única estrutura de dados do programa deve ser uma variável local na função main(). Portanto a passagem da estrutura para as funções utiliza ponteiro.
 
-OBS: Os 2 vetores devem ser escritos e lidos de um arquivo.
+Cada uma das opções do menu é uma função no programa. 
+
+Todas as operações devem ser feitas direto no arquivo. (utilize a função fseek).
+
+O programa tem um único arquivo de dados. Não pode usar nenhum arquivo auxiliar.
+ 
+O programa deve ser finalizado pelo usuário. 
+
+Não pode usar nenhuma função de biblioteca. Somente as funções de manipulação de arquivos.
