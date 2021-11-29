@@ -1,4 +1,4 @@
-#define ex1
+#define ex2
 
 #include "stdio.h"
 #include "locale.h"
@@ -67,19 +67,26 @@ main(){
     7 - imprimir os aniversariantes do mês.
     8 - saida
 */
-struct Contact{
-    char name[64];
-    char phone[15];
-    int birthDay;
-    int birthMonth;
-};
+
 
 FILE *p;
 main(){
-    struct Contact contact;
+
+    typedef struct {
+        char name[64];
+        char phone[15];
+        int birthDay;
+        int birthMonth;
+        }Contact;
+
+     //Contact contact;
+     //*contact = &contact;
+
+
+
     int menuOption = 0;
     while(1){
-        printf("1 - Inserir contato | 2 - Deletar contato | 3 - Procurar contato pelo nome | 4 - Listar todos os contatos | 5 - Listar contatos que comecam com a letra | 6 - Listar aniversariantes do mes | 9 - Sair\n");
+        printf("1 - Inserir contato | 2 - Alterar contato | 3 - Deletar contato | 4 - Procurar contato pelo nome | 5 - Listar todos os contatos | 6 - Listar contatos que comecam com a letra | 7 - Listar aniversariantes do mes | 8 - Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &menuOption);
         switch(menuOption){
@@ -87,27 +94,29 @@ main(){
                 insertContact(&contact);
                 break;
             case 2:
+                changeContact(&contact);
+            case 3:
                 deleteContact(&contact);
                 break;
-            case 3:
+            case 4:
                 getContactByName(&contact);
                 break;
-            case 4:
+            case 5:
                 getContacts(&contact);
                 break;
-            case 5:
+            case 6:
                 getContactsByInitial(&contact);
                 break;
-            case 6:
+            case 7:
                 getBirthdayPeopleOfTheMonth(&contact);
                 break;
-            case 9:
+            case 8:
                 break;
             default:
                 printf("Desculpe, nao entendi.\n\n");
                 break;
         }
-        if(menuOption == 9){
+        if(menuOption == 8){
             break;
         }
     }
@@ -127,6 +136,32 @@ void insertContact(struct Contact *contact){
     printf("Digite o dia do nascimento do contato: ");
     scanf("%d", &contact->birthDay);
     fwrite(contact, sizeof(struct Contact), 1, p);
+    fclose(p);
+}
+
+void changeContact(struct Contact *contact){
+    if((p = fopen("contacts.txt", "r+")) == NULL){
+        printf("erro na abertura do arquivo \n");
+        exit(0);
+    }
+    char name[64];
+    int result;
+    int i = 0;
+    printf("Digite o nome do contato: ");
+    scanf("%s", &name);
+    while(fread(contact, sizeof(struct Contact), 1, p)){
+        result = areEqual(&name, contact->name);
+        if(result == 1){
+            *contact->name = '\0';
+            fseek(p, sizeof(struct Contact) * i, 0);
+            fwrite(contact, sizeof(struct Contact), 1, p);
+            break;
+        }
+        i++;
+    }
+    if(result != 1){
+        printf("Usuario nao encontrado\n");
+    }
     fclose(p);
 }
 
@@ -260,7 +295,7 @@ int areEqual(char *firstString, char *secondString){
 
 #endif // ex2
 
-#ifedf ex3
+#ifdef ex3
 /*
 3 - Escreva um programa para o controle de mercadorias em uma despensa
     domestica. Para cada produto sera' armazenado um codigo numerico, nome
@@ -290,7 +325,7 @@ main(){
     struct Product product;
     int menuOption = 0;
     while(1){
-        printf("1 - Inserir produto | 2 - Retirar produto | 3 - Procurar produto pela descricao | 4 - Listar todos os produtos | 5 - Listar produtos nao disponiveis | 9 - Sair\n");
+        printf("1 - Inserir produto | 2 - Alterar produto | 3 - Retirar produto | 4 - Procurar produto pela descricao | 5 - Listar todos os produtos | 6 - Listar produtos nao disponiveis | 7 - Alterar produto | 8 - Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &menuOption);
         switch(menuOption){
@@ -445,7 +480,7 @@ int areEqual(char *firstString, char *secondString){
 
 #endif // ex3
 
-#ifedf ex4
+#ifdef ex4
 /*
 4 - Escreva um programa para contrle de um cadastro de clientes. Para cada
     registro sera' armazenado nome, end, cidade, estado, cep numa estrutura
@@ -461,20 +496,23 @@ int areEqual(char *firstString, char *secondString){
     6 - saida
 
 */
-struct User{
+
+
+FILE *p;
+main(){
+    struct User user{
     char name[64];
     char address[255];
     char city[64];
     char state[64];
     char zipCode[64];
-};
+    };
 
-FILE *p;
-main(){
-    struct User user;
+    //struct User user;
     int menuOption = 0;
+
     while(1){
-        printf("1 - Inserir usuario | 2 - Listar usuarios | 3 - Procurar usuario | 4 - Alterar usuario | 5 - Deletar usuario | 9 - Sair\n");        printf("Escolha uma opcao: ");
+        printf("1 - Inserir usuario | 2 - Listar usuarios | 3 - Procurar usuario | 4 - Alterar usuario | 5 - Deletar usuario | 6 - Sair\n");        printf("Escolha uma opcao: ");
         scanf("%d", &menuOption);
         switch(menuOption){
             case 1:
@@ -492,7 +530,7 @@ main(){
             case 5:
                 removeUser(&user);
                 break;
-            case 9:
+            case 6:
                 break;
             default:
                 printf("Desculpe, nao entendi.\n\n");
