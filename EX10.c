@@ -1,4 +1,4 @@
-#define ex2
+#define ex4
 
 #include "stdio.h"
 #include "locale.h"
@@ -67,22 +67,19 @@ main(){
     7 - imprimir os aniversariantes do mês.
     8 - saida
 */
-
+struct Contact{
+    char name[64];
+    char phone[15];
+    int birthDay;
+    int birthMonth;
+    };
 
 FILE *p;
 main(){
 
-    typedef struct {
-        char name[64];
-        char phone[15];
-        int birthDay;
-        int birthMonth;
-        }Contact;
-
-     //Contact contact;
-     //*contact = &contact;
 
 
+     struct Contact contact;
 
     int menuOption = 0;
     while(1){
@@ -94,7 +91,7 @@ main(){
                 insertContact(&contact);
                 break;
             case 2:
-                changeContact(&contact);
+                updateContact(&contact);
             case 3:
                 deleteContact(&contact);
                 break;
@@ -139,7 +136,7 @@ void insertContact(struct Contact *contact){
     fclose(p);
 }
 
-void changeContact(struct Contact *contact){
+void updateContact(struct Contact *contact){
     if((p = fopen("contacts.txt", "r+")) == NULL){
         printf("erro na abertura do arquivo \n");
         exit(0);
@@ -159,6 +156,17 @@ void changeContact(struct Contact *contact){
         }
         i++;
     }
+    getchar();
+    printf("Digite o novo nome do contato: ");
+    gets(contact->name);
+    printf("Digite o novo telefone do contato: ");
+    gets(contact->phone);
+    printf("Digite o novo  mes do nascimento do contato: ");
+    scanf("%d", &contact->birthMonth);
+    printf("Digite o novo dia do nascimento do contato: ");
+    scanf("%d", &contact->birthDay);
+    fwrite(contact, sizeof(struct Contact), 1, p);
+
     if(result != 1){
         printf("Usuario nao encontrado\n");
     }
@@ -333,18 +341,22 @@ main(){
                 insertProduct(&product);
                 break;
             case 2:
+                updateProduct(&product);
+            case 3:
                 removeProduct(&product);
                 break;
-            case 3:
+            case 4:
                 getProductByDescription(&product);
                 break;
-            case 4:
+            case 5:
                 getProducts(&product);
                 break;
-            case 5:
+            case 6:
                 getUnavailableProducts(&product);
                 break;
-            case 9:
+            case 7:
+                changeQuantityProduct(&product);
+            case 8:
                 break;
             default:
                 printf("Desculpe, nao entendi.\n\n");
@@ -369,6 +381,54 @@ void insertProduct(struct Product *product){
     printf("Digite a quantidade do produto: ");
     scanf("%d", &product->quantity);
     fwrite(product, sizeof(struct Product), 1, p);
+    fclose(p);
+}
+
+void updateProduct(struct Product *product){
+    if((p = fopen("products.txt", "r+")) == NULL){
+        printf("erro na abertura do arquivo \n");
+        exit(0);
+    }
+    int code = 0;
+    int quantity = 0;
+    int result, result2;
+    int i = 0;
+    printf("Digite o codigo do produto: ");
+    scanf("%d", &code);
+    printf("Digite quanto quer alterar: ");
+    scanf("%d", &quantity);
+
+    while(fread(product, sizeof(struct Product), 1, p)){
+        result = code == product->code ? 1 : 0;
+        if(result == 1){
+            result2 = product->quantity >= quantity ? 1 : 0;
+            if(result2)
+            {
+                product->quantity -= quantity;
+                fseek(p, sizeof(struct Product) * i, 0);
+                fwrite(product, sizeof(struct Product), 1, p);
+                break;
+            }
+            else{
+                printf("Você não tem essa quantidade desse produto\n");
+            }
+        }
+        i++;
+    }
+    getchar();
+    printf("Digite qual será o  codigo do produto: ");
+    scanf("%d", &product->code);
+    getchar();
+    printf("Digite qual será a descricao do produto: ");
+    gets(product->description);
+    printf("Digite qual será a quantidade do produto: ");
+    scanf("%d", &product->quantity);
+    fwrite(product, sizeof(struct Product), 1, p);
+
+
+    if(result != 1 && result2 != 0){
+        printf("Produto nao encontrado\n");
+    }
     fclose(p);
 }
 
@@ -454,6 +514,50 @@ void getUnavailableProducts(struct Product *product){
     fclose(p);
 }
 
+void changeQuantityProduct(struct Product *product){
+    if((p = fopen("products.txt", "r+")) == NULL){
+        printf("erro na abertura do arquivo \n");
+        exit(0);
+    }
+    int code = 0;
+    int quantity = 0;
+    int result, result2;
+    int i = 0;
+    printf("Digite o codigo do produto: ");
+    scanf("%d", &code);
+    printf("Digite quanto quer alterar: ");
+    scanf("%d", &quantity);
+
+    while(fread(product, sizeof(struct Product), 1, p)){
+        result = code == product->code ? 1 : 0;
+        if(result == 1){
+            result2 = product->quantity >= quantity ? 1 : 0;
+            if(result2)
+            {
+                product->quantity -= quantity;
+                fseek(p, sizeof(struct Product) * i, 0);
+                fwrite(product, sizeof(struct Product), 1, p);
+                break;
+            }
+            else{
+                printf("Você não tem essa quantidade desse produto\n");
+            }
+        }
+        i++;
+    }
+    getchar();
+    printf("Digite qual será a quantidade do produto: ");
+    scanf("%d", &product->quantity);
+    fwrite(product, sizeof(struct Product), 1, p);
+
+
+    if(result != 1 && result2 != 0){
+        printf("Produto nao encontrado\n");
+    }
+    fclose(p);
+}
+
+
 int areEqual(char *firstString, char *secondString){
     int result = 0;
     int i = 0;
@@ -497,18 +601,17 @@ int areEqual(char *firstString, char *secondString){
 
 */
 
-
-FILE *p;
-main(){
-    struct User user{
+struct User{
     char name[64];
     char address[255];
     char city[64];
     char state[64];
     char zipCode[64];
     };
+FILE *p;
+main(){
 
-    //struct User user;
+    struct User user;
     int menuOption = 0;
 
     while(1){
